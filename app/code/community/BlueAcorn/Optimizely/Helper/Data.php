@@ -61,10 +61,14 @@ class BlueAcorn_Optimizely_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getCustomAttributes()
     {
-        $config = Mage::getStoreConfig(self::CONFIG_PATH . "project_settings/attributes");
         $attrs = array();
-        foreach($config as $attr) {
-            $attrs[] = $attr['attribute'];
+
+        $config = Mage::getStoreConfig(self::CONFIG_PATH . "project_settings/attributes");
+
+        if (is_array($config)) {
+            foreach($config as $attr) {
+                $attrs[] = $attr['attribute'];
+            }
         }
 
         return $attrs;
